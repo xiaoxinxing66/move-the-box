@@ -1,0 +1,117 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<windows.h>
+#include<string.h>
+int  main() {
+	char a[50][50] = { "##########",
+					   "#  !##!###",
+					   "o *### ###",
+					   "#   *   ##",
+					   "####   ###", 
+	                   "##########"};
+	int x, y;   //person position
+	int i, j;   //num1 box position
+	int ii, jj; //num2 box position
+	int wini, winj;  //num1box  win position
+	int winii, winjj;  //num2box win position
+	x = 2, y = 0, i = 2, j = 2, ii = 3, jj = 4, wini = 1, winj = 3, winii = 1, winjj = 6;
+	int z;
+	for (z = 0; z < 6; z++) {   //print by line
+		puts(a[z]);
+	}
+	while (a[wini][winj]!='@' || a[winii][winjj]!='@') {
+		char c = getch();
+		if (c == 'a') {
+			if (a[x][y - 1] != '#' && a[x][y - 1] != '*') {
+				a[x][y] = ' ';
+				a[x][y - 1] = 'o';  //simple move
+				y--;
+				
+
+			}
+			if (a[x][y - 1] == '*' && a[x][y - 2] != '#'&& a[x][y - 2] != '!') {
+				a[x][y] = ' ';
+				a[x][y - 1] = 'o';
+				a[x][y - 2] = '*';    //push move
+				y--;
+				
+				
+			}
+			if (a[x][y - 1] == '*' && a[x][y - 2] == '!') {
+				a[x][y] = ' ';
+				a[x][y - 1] = 'o';
+				a[x][y - 2] = '@';    //winner
+				y--;
+				
+			}
+		}
+		if (c == 'w') {
+			if (a[x-1][y] != '#' && a[x-1][y] != '*') {
+				a[x][y] = ' ';
+				a[x-1][y] = 'o';    //simple move
+				x--;
+			}
+			if (a[x-1][y] == '*' && a[x-2][y] != '#'&& a[x-2][y] != '!') {
+				a[x][y] = ' ';
+				a[x-1][y] = 'o';
+				a[x-2][y] = '*';    //push move
+				x--;
+
+			}
+			if (a[x-1][y] == '*' && a[x-2][y] == '!') {
+				a[x][y] = ' ';
+				a[x-1][y] = 'o';
+				a[x-2][y] = '@';    //winner
+				x--;
+			}
+		}
+		if (c == 's') {
+			if (a[x+1][y] != '#' && a[x+1][y] != '*') {
+				a[x][y] = ' ';
+				a[x+1][y] = 'o';  //simple move
+				x++;
+			}
+			if (a[x+1][y] == '*' && a[x+2][y] != '#'&& a[x+2][y] != '!') {
+				a[x][y] = ' ';
+				a[x+1][y] = 'o';
+				a[x+2][y] = '*';    //push move
+				x++;
+
+			}
+			if (a[x+1][y] == '*' && a[x+2][y] == '!') {
+				a[x][y] = ' ';
+				a[x+1][y] = 'o';
+				a[x+2][y] = '@';    //winner
+				x++;
+			}
+		}
+		if (c == 'd') {
+			if (a[x][y + 1] != '#' && a[x][y + 1] != '*') {
+				a[x][y] = ' ';
+				a[x][y + 1] = 'o';    //simple move
+				y++;
+			}
+			if (a[x][y + 1] == '*' && a[x][y + 2] != '#'&&a[x][y+2]!='!') {
+				a[x][y] = ' ';
+				a[x][y + 1] = 'o';
+				a[x][y + 2] = '*';    //push move
+				y++;
+
+			}
+			if (a[x][y + 1] == '*' && a[x][y + 2] == '!') {
+				a[x][y] = ' ';
+				a[x][y + 1] = 'o';
+				a[x][y + 2] = '@';    //winner
+				y++;
+			}
+		}
+
+	system("cls");
+		for (z = 0; z < 6; z++) {
+		puts(a[z]);
+		}
+	}
+	printf("you win!!");
+	Sleep(5000);
+	return 0;
+}
